@@ -12,7 +12,61 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Journal-->
+        <!--Journals-->
+        <scene sceneID="ElX-yY-cBq">
+            <objects>
+                <tableViewController id="gih-uD-H85" customClass="JournalsTableViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Cm-nq-2g4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JournalCell" textLabel="jQt-Me-G9g" detailTextLabel="fMH-Jc-M2E" style="IBUITableViewCellStyleValue1" id="30a-fP-byF">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="30a-fP-byF" id="dmI-41-wFL">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jQt-Me-G9g">
+                                            <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fMH-Jc-M2E">
+                                            <rect key="frame" x="315" y="12" width="44" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="jZm-On-7JG" kind="show" identifier="ShowJournals" id="wvv-CF-ZNz"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gih-uD-H85" id="WNV-AO-D30"/>
+                            <outlet property="delegate" destination="gih-uD-H85" id="gj7-5e-E9p"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Journals" id="XZi-gq-kpT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jRH-n4-6Sb">
+                            <connections>
+                                <segue destination="HFf-Os-BNp" kind="show" identifier="ShowCreateJournal" id="57g-uz-0q4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tSC-uD-r7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="151" y="298"/>
+        </scene>
+        <!--Entries-->
         <scene sceneID="YJc-Fr-MfI">
             <objects>
                 <tableViewController id="jZm-On-7JG" customClass="EntriesTableViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
@@ -77,7 +131,7 @@
                             <outlet property="delegate" destination="jZm-On-7JG" id="pAY-2Y-4cm"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Journal" id="3Ja-tx-YZW">
+                    <navigationItem key="navigationItem" title="Entries" id="3Ja-tx-YZW">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VeL-8w-g5s">
                             <connections>
                                 <segue destination="VbS-fA-bhl" kind="show" identifier="ShowCreateEntry" id="guA-0d-Yb4"/>
@@ -88,6 +142,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wHM-IW-5cJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="933.60000000000002" y="298.2008995502249"/>
+        </scene>
+        <!--CreateJournal-->
+        <scene sceneID="A27-2X-ebj">
+            <objects>
+                <viewController id="HFf-Os-BNp" customClass="CreateJournalViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GDV-7o-QS6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a title:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p8B-F0-lQD">
+                                <rect key="frame" x="16" y="132" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MbV-MA-j3G" firstAttribute="trailing" secondItem="p8B-F0-lQD" secondAttribute="trailing" constant="16" id="5Ko-93-PxL"/>
+                            <constraint firstItem="p8B-F0-lQD" firstAttribute="leading" secondItem="MbV-MA-j3G" secondAttribute="leading" constant="16" id="KrS-Se-KGp"/>
+                            <constraint firstItem="p8B-F0-lQD" firstAttribute="top" secondItem="MbV-MA-j3G" secondAttribute="top" constant="16" id="wAj-AB-ZLP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MbV-MA-j3G"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="CreateJournal" id="9zO-yn-BaT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="wFS-WX-ml3">
+                            <connections>
+                                <action selector="save:" destination="HFf-Os-BNp" id="z0g-dK-0gM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="titleTextField" destination="p8B-F0-lQD" id="C5G-SX-cd2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j0S-U6-gto" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="150" y="1038"/>
         </scene>
         <!--Create Entry-->
         <scene sceneID="o0n-AI-4oC">
@@ -149,12 +241,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="jZm-On-7JG" kind="relationship" relationship="rootViewController" id="N5X-DL-251"/>
+                        <segue destination="gih-uD-H85" kind="relationship" relationship="rootViewController" id="ptl-v0-VzV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bi3-IF-APE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="151" y="298"/>
+            <point key="canvasLocation" x="-657" y="298"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

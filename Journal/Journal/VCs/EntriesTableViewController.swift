@@ -43,7 +43,9 @@ class EntriesTableViewController: UITableViewController {
                     NSLog("Error deleting data: \(error)")
                     return
                 }
-                
+                DispatchQueue.main.async {
+                    self.tableView.deleteRows(at: [indexPath], with: .fade)
+                }
                 self.fetchData()
             }
         }
