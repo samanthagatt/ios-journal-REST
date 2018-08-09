@@ -36,6 +36,30 @@ class EntryController: Codable {
         put(entry: scratch, completion: completion)
     }
     
+    func delete(entry: Entry, completion: @escaping (Error?) -> Void) {
+        
+        let requestURL = EntryController.baseURL
+            .appendingPathComponent(entry.identifier)
+            .appendingPathExtension("json")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "DELETE"
+        
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
+            
+            if let error = error {
+                NSLog("Error deleting \(entry.title) entry from server: \(error)")
+                completion(error)
+                return
+            }
+            
+            guard let _ = data else {
+                completion(error)
+                return
+            }
+        }.resume()
+    }
+    
     
     // MARK: - Networking
     
@@ -96,12 +120,13 @@ class EntryController: Codable {
                 let entryDicts = try JSONDecoder().decode([String: Entry].self, from: data)
                 let entries = entryDicts.compactMap { $0.value }
                 self.entries = entries.sorted { $0.timestamp > $1.timestamp }
+                completion(nil)
                 
             } catch {
                 NSLog("Error decoding data: \(error)")
                 completion(error)
                 return
             }
-        }
+        }.resume()
     }
 }
