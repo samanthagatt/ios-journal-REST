@@ -23,15 +23,12 @@ class EntryController: Codable {
         put(entry: entry, completion: completion)
     }
     
-    func update(entry: Entry, title: String, body: String, completion: @escaping (Error?) -> Void) {
+    func update(entry: Entry, title: String, body: String, timestamp: Date = Date(), completion: @escaping (Error?) -> Void) {
         
         var scratch = entry
         scratch.title = title
         scratch.body = body
-        
-        // Is this needed?
-//        guard let index = entries.index(of: entry) else { return }
-//        entries[index] = scratch
+        scratch.timestamp = timestamp
         
         put(entry: scratch, completion: completion)
     }
