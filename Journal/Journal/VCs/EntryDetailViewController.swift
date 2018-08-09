@@ -33,13 +33,20 @@ class EntryDetailViewController: UIViewController {
         }
     }
     
+    func showAlert() {
+        let cancelAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+        let alert = UIAlertController(title: "Not enough information", message: "Your entry doesn't seem to be complete. In order to save an entry, you need a title and a body.", preferredStyle: .alert)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true)
+    }
+    
     
     // MARK: - Actions
     
     @IBAction func save(_ sender: Any) {
         
-        guard let title = titleTextField.text,
-            let body = bodyTextView.text else { return }
+        guard let title = titleTextField.text, title != "",
+            let body = bodyTextView.text, body != "Your text here" else { showAlert(); return }
         
         if let thisEntry = entry {
             entryController?.update(entry: thisEntry, title: title, body: body, completion: { (error) in

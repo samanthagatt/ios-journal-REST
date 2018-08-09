@@ -13,15 +13,7 @@ class EntriesTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        entryController.fetch { (error) in
-            if let error = error {
-                NSLog("Error fetching data: \(error)")
-                return
-            }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        fetchData()
     }
     
 
@@ -52,13 +44,25 @@ class EntriesTableViewController: UITableViewController {
                     return
                 }
                 
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                self.fetchData()
             }
         }
     }
     
+    
+    // MARK: - Functions
+    
+    func fetchData() {
+        entryController.fetch { (error) in
+            if let error = error {
+                NSLog("Error fetching data: \(error)")
+                return
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     // MARK: - Properties
     
