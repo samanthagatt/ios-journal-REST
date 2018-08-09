@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -79,7 +80,7 @@
                     <navigationItem key="navigationItem" title="Journal" id="3Ja-tx-YZW">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VeL-8w-g5s">
                             <connections>
-                                <segue destination="VbS-fA-bhl" kind="show" identifier="ShowAddEntry" id="guA-0d-Yb4"/>
+                                <segue destination="VbS-fA-bhl" kind="show" identifier="ShowCreateEntry" id="guA-0d-Yb4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -88,16 +89,52 @@
             </objects>
             <point key="canvasLocation" x="933.60000000000002" y="298.2008995502249"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Entry-->
         <scene sceneID="o0n-AI-4oC">
             <objects>
-                <viewController id="VbS-fA-bhl" sceneMemberID="viewController">
+                <viewController id="VbS-fA-bhl" customClass="EntryDetailViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VZw-R9-Kdn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Q49-Re-2Dh">
+                                <rect key="frame" x="16" y="132" width="343" height="222.5"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a title:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zYH-rK-1dk">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Your text here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="euy-w8-lSM">
+                                        <rect key="frame" x="0.0" y="38" width="343" height="184.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Q49-Re-2Dh" firstAttribute="height" secondItem="VZw-R9-Kdn" secondAttribute="height" multiplier="1/3" id="8lf-TZ-JQL"/>
+                            <constraint firstItem="Q49-Re-2Dh" firstAttribute="top" secondItem="L2t-AH-EOg" secondAttribute="top" constant="16" id="RcT-rb-sS5"/>
+                            <constraint firstItem="Q49-Re-2Dh" firstAttribute="leading" secondItem="L2t-AH-EOg" secondAttribute="leading" constant="16" id="YUW-KK-pgL"/>
+                            <constraint firstItem="L2t-AH-EOg" firstAttribute="trailing" secondItem="Q49-Re-2Dh" secondAttribute="trailing" constant="16" id="cPa-jC-n9i"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="L2t-AH-EOg"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Create Entry" id="SR9-DM-ZWO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Slv-0m-HSM">
+                            <connections>
+                                <action selector="save:" destination="VbS-fA-bhl" id="Hs6-V4-hbL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bodyTextView" destination="euy-w8-lSM" id="Wdh-Bb-vw9"/>
+                        <outlet property="titleTextField" destination="zYH-rK-1dk" id="CbN-4M-gtx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DGC-8s-MYX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -121,6 +158,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XGP-Ks-9Rd"/>
+        <segue reference="guA-0d-Yb4"/>
     </inferredMetricsTieBreakers>
 </document>
